@@ -76,3 +76,17 @@ def customer_can_afford_pet(customer,pet)
     return false
   end
 end
+
+
+def sell_pet_to_customer(shop,pet,customer)
+  stock_check = true if pet != nil
+  fund_check = true if customer_can_afford_pet(customer,pet)
+  pet_cost = pet[:price]
+
+  if stock_check == true && fund_check == true
+    shop[:pets].delete(pet)
+    increase_pets_sold(shop,1)
+    add_pet_to_customer(customer,pet)
+    add_or_remove_cash(shop,pet_cost)
+  end
+end
