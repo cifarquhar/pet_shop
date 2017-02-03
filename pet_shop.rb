@@ -68,12 +68,16 @@ end
 
 
 def customer_can_afford_pet(customer,pet)
-  funds = customer.values_at(:cash)[0]
-  cost = pet.values_at(:price)[0]
-  if funds >= cost
-    return true
-  else
+  if pet == nil
     return false
+  else
+    funds = customer.values_at(:cash)[0]
+    cost = pet.values_at(:price)[0]
+    if funds >= cost
+      return true
+    else
+      return false
+    end
   end
 end
 
@@ -81,7 +85,11 @@ end
 def sell_pet_to_customer(shop,pet,customer)
   stock_check = true if pet != nil
   fund_check = true if customer_can_afford_pet(customer,pet)
-  pet_cost = pet[:price]
+  if pet == nil
+    pet_cost = 0
+  else
+    pet_cost = pet[:price]
+  end
 
   if stock_check == true && fund_check == true
     shop[:pets].delete(pet)
@@ -90,3 +98,5 @@ def sell_pet_to_customer(shop,pet,customer)
     add_or_remove_cash(shop,pet_cost)
   end
 end
+
+
