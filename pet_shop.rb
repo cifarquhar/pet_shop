@@ -22,9 +22,11 @@ def increase_pets_sold(shop,sales)
   shop[:admin][:pets_sold] += sales
 end
 
+
 def stock_count(shop)
   shop[:pets].length
 end
+
 
 def pets_by_breed(shop,breed)
   breed_array = []
@@ -37,6 +39,7 @@ end
 
 def find_pet_by_name(shop,pet_name)
   for pet in shop[:pets]
-    return pet if pet[:name] == pet_name
+    found_pet = pet if pet[:name] == pet_name
   end
+  return found_pet
 end
