@@ -68,8 +68,8 @@ end
 
 
 def customer_can_afford_pet(customer,pet)
-  funds = :cash
-  cost = :price
+  funds = customer.values_at(:cash)[0]
+  cost = pet.values_at(:price)[0]
   if funds >= cost
     return true
   else
