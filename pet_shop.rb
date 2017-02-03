@@ -29,8 +29,14 @@ end
 def pets_by_breed(shop,breed)
   breed_array = []
   for pet in shop[:pets]
-    breed_array.push(pet) if pet.values.include?(breed) 
+    breed_array.push(pet) if pet[:breed] == breed 
   end
   return breed_array
 end
-# This would push a pet into the array if it had a name which was also a breed, eg. a cat called "Husky". Better way of doing this?
+
+
+def find_pet_by_name(shop,pet_name)
+  for pet in shop[:pets]
+    return pet if pet[:name] == pet_name
+  end
+end
